@@ -8,9 +8,8 @@
 import Foundation
 
 class NetworkWeather {
-    var onCompletion: ((currentWeather) -> Void)?
-    func fetchCurrentWeater() {
-        let urlString = "https://api.weather.yandex.ru/v2/forecast?lat=55.75396&lon=37.620393&extra=true"
+    func fetchCurrentWeater(lat: Double, lon: Double, complitionHendler: @escaping (currentWeather) -> Void) {
+        let urlString = "https://api.weather.yandex.ru/v2/forecast?lat=\(lat)&lon=\(lon)&extra=true"
         guard let url = URL(string: urlString) else {return}
         var request = URLRequest(url: url, timeoutInterval: Double.infinity)
         request.addValue("4776677d-7799-4ce0-9cfd-8586bde216d7", forHTTPHeaderField: "X-Yandex-API-Key")
@@ -19,9 +18,9 @@ class NetworkWeather {
         let task = session.dataTask(with: request) {data, response, error in
             if let data = data {
                 if let currenWeather = self.parseJSON(withData: data) {
-                    self.onCompletion?(currenWeather)
+                    complitionHendler(currenWeather)
                 }
-                print(String(data:data, encoding: .utf8)!)
+               
             }
         }
         task.resume()

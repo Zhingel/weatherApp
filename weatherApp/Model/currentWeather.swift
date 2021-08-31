@@ -8,17 +8,17 @@
 import Foundation
 struct currentWeather {
     var name: String = "Название"
-    let temperature: Int
+    var temperature: Int = 0
     var temperatureString: String {
         return String(temperature)
     }
-    let feelsLikeTemperature: Int
+    var feelsLikeTemperature: Int = 0
     var feelsLikeTemperatureString: String {
         return String(feelsLikeTemperature)
     }
-    let conditionCode: String
-    var url: String
-    var condition: String
+    var conditionCode: String = ""
+    var url: String = ""
+    var condition: String = ""
     var conditionString: String {
         switch condition {
         case "clear" : return "ясно"
@@ -50,5 +50,8 @@ struct currentWeather {
         conditionCode = currentWeatherData.fact.icon
         url = currentWeatherData.info.url
         condition = currentWeatherData.fact.condition
+    }
+    init() {
+        
     }
 }

@@ -7,7 +7,10 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
+    var weather = [currentWeather]()
+    let cities = ["Москва", "НьюЙорк", "Париж", "Милан", "Вена", "Берлин", "Токио", "Пенза", "Киев", "Рига"]
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -16,19 +19,17 @@ class ViewController: UIViewController {
         return collectionView
     }()
     var networkWeatherManager = NetworkWeather()
+    let city = currentWeather()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .gray
+        view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         title = "WeatherApp"
-        networkWeatherManager.onCompletion = {[weak self] currentWeather in
-            guard let self = self else {return}
-            print(currentWeather.condition)
-            print(currentWeather.temperatureString)
-            print(currentWeather.conditionCode)
-            print(currentWeather.feelsLikeTemperatureString)
-        }
-        self.networkWeatherManager.fetchCurrentWeater()
+       
+    //    self.networkWeatherManager.fetchCurrentWeater()
         
         
         view.addSubview(collectionView)
@@ -40,29 +41,46 @@ class ViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+        
+        if weather.isEmpty {
+            weather = Array(repeating: city, count: cities.count)
+        }
+        addCities()
+        
     }
     
-    
+    func addCities() {
+        getCityWeather(cities: self.cities) { (index,weather) in
+            DispatchQueue.main.async {
+                self.weather[index] = weather
+                self.weather[index].name = self.cities[index]
+                print(self.weather)
+                self.collectionView.reloadData()
+            }
+
+        }
+    }
 }
+
+
 
 
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        cities.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! Cell
+        
         cell.backgroundColor = .green
-            cell.button.setImage(UIImage(systemName: "largecircle.fill.circle",withConfiguration: UIImage.SymbolConfiguration(pointSize: 30)),for: .normal)
-        networkWeatherManager.onCompletion = {[weak self] currentWeather in
-            guard self != nil else {return}
-            DispatchQueue.main.async {
-                cell.label.text = currentWeather.temperatureString
-            }
-            
-        }
+        cell.layer.cornerRadius = 20
+//        cell.button.setImage(UIImage(systemName: "largecircle.fill.circle",withConfiguration: UIImage.SymbolConfiguration(pointSize: 30)),for: .normal)
+
+        cell.label.text = cities[indexPath.row]
+        cell.temperatureLabel.text = weather[indexPath.row].temperatureString
+        
         
         return cell
     }
