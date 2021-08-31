@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		EED8B3F626DE8E8800EE6047 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8B3F526DE8E8800EE6047 /* Cell.swift */; };
 		EED8B3F826DE963100EE6047 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8B3F726DE963100EE6047 /* Coordinates.swift */; };
 		EED8B3FA26DEB1A000EE6047 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8B3F926DEB1A000EE6047 /* Details.swift */; };
+		EED8B3FD26DECA4600EE6047 /* SwiftSVG in Frameworks */ = {isa = PBXBuildFile; productRef = EED8B3FC26DECA4600EE6047 /* SwiftSVG */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EED8B3FD26DECA4600EE6047 /* SwiftSVG in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +116,9 @@
 			dependencies = (
 			);
 			name = weatherApp;
+			packageProductDependencies = (
+				EED8B3FC26DECA4600EE6047 /* SwiftSVG */,
+			);
 			productName = weatherApp;
 			productReference = EED8B39426DE68BE00EE6047 /* weatherApp.app */;
 			productType = "com.apple.product-type.application";
@@ -141,6 +146,9 @@
 				Base,
 			);
 			mainGroup = EED8B38B26DE68BE00EE6047;
+			packageReferences = (
+				EED8B3FB26DECA4600EE6047 /* XCRemoteSwiftPackageReference "SwiftSVG" */,
+			);
 			productRefGroup = EED8B39526DE68BE00EE6047 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -369,6 +377,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EED8B3FB26DECA4600EE6047 /* XCRemoteSwiftPackageReference "SwiftSVG" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mchoe/SwiftSVG";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EED8B3FC26DECA4600EE6047 /* SwiftSVG */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EED8B3FB26DECA4600EE6047 /* XCRemoteSwiftPackageReference "SwiftSVG" */;
+			productName = SwiftSVG;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EED8B38C26DE68BE00EE6047 /* Project object */;
 }

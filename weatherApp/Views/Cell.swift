@@ -11,8 +11,10 @@ import UIKit
 
 class Cell: UICollectionViewCell {
     let label: UILabel = .init()
+    let image: UIView = .init()
     let temperatureLabel: UILabel = .init()
     let condition: UILabel = .init()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(label)
@@ -33,6 +35,10 @@ class Cell: UICollectionViewCell {
         condition.translatesAutoresizingMaskIntoConstraints = false
         condition.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -30).isActive = true
         condition.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
+        self.addSubview(image)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        image.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -75).isActive = true
     }
     
     required init?(coder: NSCoder) {

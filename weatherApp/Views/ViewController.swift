@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftSVG
 
 
 class ViewController: UIViewController {
@@ -20,8 +21,6 @@ class ViewController: UIViewController {
     }()
     var networkWeatherManager = NetworkWeather()
     let city = currentWeather()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,11 +71,15 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! Cell
-        
+        let url = URL(string: "https://yastatic.net/weather/i/icons/funky/dark/\(weather[indexPath.row].conditionCode).svg")
+        let image = UIView(SVGURL: url!) { image in
+            image.resizeToFit(CGRect(x: 40, y: 40, width: 40, height: 40))
+        }
         cell.backgroundColor = .green
         cell.layer.cornerRadius = 20
         cell.condition.text = weather[indexPath.row].conditionString
         cell.label.text = cities[indexPath.row]
+        cell.image.addSubview(image)
         cell.temperatureLabel.text = "\(weather[indexPath.row].temperatureString) °C"
         
         
