@@ -40,7 +40,7 @@ struct currentWeather {
         case "thunderstorm" : return "гроза"
         case "thunderstorm-with-rain" : return "дождь с грозой"
         case "thunderstorm-with-hail" : return "гроза с градом"
-        default: return "Все будет хорошо+)"
+        default: return "Загрузка..."
         }
     }
    

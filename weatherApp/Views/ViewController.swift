@@ -29,7 +29,6 @@ class ViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         title = "WeatherApp"
        
-    //    self.networkWeatherManager.fetchCurrentWeater()
         
         
         view.addSubview(collectionView)
@@ -76,10 +75,9 @@ extension ViewController: UICollectionViewDataSource {
         
         cell.backgroundColor = .green
         cell.layer.cornerRadius = 20
-//        cell.button.setImage(UIImage(systemName: "largecircle.fill.circle",withConfiguration: UIImage.SymbolConfiguration(pointSize: 30)),for: .normal)
-
+        cell.condition.text = weather[indexPath.row].conditionString
         cell.label.text = cities[indexPath.row]
-        cell.temperatureLabel.text = weather[indexPath.row].temperatureString
+        cell.temperatureLabel.text = "\(weather[indexPath.row].temperatureString) °C"
         
         
         return cell
@@ -95,5 +93,16 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    }
+}
+
+extension ViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let vc = Details()
+        vc.tempLabel.text = "\(weather[indexPath.row].temperatureString) °C"
+        vc.cityLabel.text = cities[indexPath.row]
+        vc.titleBar = cities[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
