@@ -43,6 +43,14 @@ struct currentWeather {
         default: return "Загрузка..."
         }
     }
+    var date: String = ""
+    var temp: Int = 0
+    
+    struct forecast {
+        var date: String = ""
+        var temp: Int = 0
+    }
+    var forecastWeek = [forecast]()
    
     init?(currentWeatherData: currentWeatherData) {
         temperature = currentWeatherData.fact.temp
@@ -50,6 +58,11 @@ struct currentWeather {
         conditionCode = currentWeatherData.fact.icon
         url = currentWeatherData.info.url
         condition = currentWeatherData.fact.condition
+        for day in  0...6 {
+            date = currentWeatherData.forecasts[day].date
+            temp = currentWeatherData.forecasts[day].parts.dayShort.temp ?? 0
+            forecastWeek.append(forecast.init(date: date, temp: temp))
+        }
     }
     init() {
         

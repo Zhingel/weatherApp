@@ -10,6 +10,7 @@ import Foundation
 struct currentWeatherData: Decodable {
     let info: Info
     let fact: Fact
+    let forecasts: [Forecast]
 }
 
 struct Info: Decodable  {
@@ -21,4 +22,19 @@ struct Fact: Decodable {
     let icon: String
     let condition: String
     let feels_like: Int
+}
+struct Forecast: Decodable {
+    let date: String
+    let parts: Parts
+}
+struct Parts: Decodable {
+    let  dayShort: Hour
+
+    enum CodingKeys: String, CodingKey {
+        case dayShort = "day_short"
+       
+    }
+}
+struct Hour: Decodable {
+    let temp: Int?
 }

@@ -108,6 +108,15 @@ extension ViewController: UICollectionViewDelegate {
         vc.tempLabel.text = "\(weather[indexPath.row].temperatureString) °C"
         vc.cityLabel.text = cities[indexPath.row]
         vc.titleBar = cities[indexPath.row]
+        for day in  0...6 {
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = "yyyy'-'MM'-'dd"
+//            let date = dateFormatter.date(from: weather[indexPath.row].forecastWeek[day].date)
+            vc.temp.append(weather[indexPath.row].forecastWeek[day].temp)
+            vc.days.append(weather[indexPath.row].forecastWeek[day].date)
+            
+        }
+        
         navigationController?.pushViewController(vc, animated: true)
     }
 }

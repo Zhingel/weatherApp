@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE4DC82226DF546B004FD1D4 /* detailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DC82126DF546B004FD1D4 /* detailsCell.swift */; };
 		EED8B39826DE68BE00EE6047 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8B39726DE68BE00EE6047 /* AppDelegate.swift */; };
 		EED8B39A26DE68BE00EE6047 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8B39926DE68BE00EE6047 /* SceneDelegate.swift */; };
 		EED8B39C26DE68BE00EE6047 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8B39B26DE68BE00EE6047 /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE4DC82126DF546B004FD1D4 /* detailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailsCell.swift; sourceTree = "<group>"; };
 		EED8B39426DE68BE00EE6047 /* weatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED8B39726DE68BE00EE6047 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EED8B39926DE68BE00EE6047 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				EED8B39B26DE68BE00EE6047 /* ViewController.swift */,
 				EED8B3F526DE8E8800EE6047 /* Cell.swift */,
 				EED8B3F926DEB1A000EE6047 /* Details.swift */,
+				EE4DC82126DF546B004FD1D4 /* detailsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			files = (
 				EED8B39C26DE68BE00EE6047 /* ViewController.swift in Sources */,
 				EED8B3F126DE7A6400EE6047 /* weatherData.swift in Sources */,
+				EE4DC82226DF546B004FD1D4 /* detailsCell.swift in Sources */,
 				EED8B3F626DE8E8800EE6047 /* Cell.swift in Sources */,
 				EED8B3EF26DE768300EE6047 /* NetworkWeather.swift in Sources */,
 				EED8B39826DE68BE00EE6047 /* AppDelegate.swift in Sources */,
