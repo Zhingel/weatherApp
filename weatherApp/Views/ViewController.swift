@@ -11,7 +11,7 @@ import SwiftSVG
 
 class ViewController: UIViewController {
     var weather = [currentWeather]()
-    var cities = ["Москва", "НьюЙорк", "Париж", "Милан", "Вена", "Берлин", "Токио", "Пенза", "Киев", "Рига"]
+    var cities = ["Москва", "Нью Йорк", "Париж", "Милан", "Вена", "Берлин", "Токио", "Пенза", "Киев", "Рига"]
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -136,11 +136,11 @@ extension ViewController {
         let search = UIAlertAction(title: "Search", style: .default) { action in
             let textField = ac.textFields?.first
             guard let cityName = textField?.text else { return }
-            if cityName != "" {
-                let city = cityName.split(separator:" ").joined(separator: "%20")
+          
+                let city = cityName
    //             self.networkWeatherManager.fetchCurrentWeater(forCity: cityName)
                 completionHandler(city)
-            }
+            
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
