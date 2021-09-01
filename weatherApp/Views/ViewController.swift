@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.9023400545, green: 0.8969761729, blue: 0.9064632654, alpha: 1)
         title = "WeatherApp"
        
         
@@ -74,8 +74,10 @@ extension ViewController: UICollectionViewDataSource {
         let url = URL(string: "https://yastatic.net/weather/i/icons/funky/dark/\(weather[indexPath.row].conditionCode).svg")
         let image = UIView(SVGURL: url!) { image in
             image.resizeToFit(CGRect(x: 40, y: 40, width: 40, height: 40))
+            image.fillColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            image.strokeColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         }
-        cell.backgroundColor = .green
+        cell.backgroundColor = .darkGray
         cell.layer.cornerRadius = 20
         cell.condition.text = weather[indexPath.row].conditionString
         cell.label.text = cities[indexPath.row]
