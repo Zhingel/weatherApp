@@ -16,7 +16,7 @@ class detailsCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(label)
         NSLayoutConstraint.activate ([
-            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 10),
             label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])

@@ -11,7 +11,7 @@ import SwiftSVG
 
 class ViewController: UIViewController {
     var weather = [currentWeather]()
-    let cities = ["Москва", "НьюЙорк", "Париж", "Милан", "Вена", "Берлин", "Токио", "Пенза", "Киев", "Рига"]
+    var cities = ["Москва", "НьюЙорк", "Париж", "Милан", "Вена", "Берлин", "Токио", "Пенза", "Киев", "Рига"]
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         view.backgroundColor = #colorLiteral(red: 0.9023400545, green: 0.8969761729, blue: 0.9064632654, alpha: 1)
         title = "WeatherApp"
-       
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addTapped))
         
         
         view.addSubview(collectionView)
@@ -47,6 +47,13 @@ class ViewController: UIViewController {
         
     }
     
+    @objc func addTapped(_ sender: UIButton) {
+    self.presentSearchAlertController(withTitle: "Enter city name", message: nil, style: .alert) {[unowned self] city1 in
+        self.cities.append(city1)
+        self.weather.append(self.city)
+        addCities()
+    }
+}
     func addCities() {
         getCityWeather(cities: self.cities) { (index,weather) in
             DispatchQueue.main.async {
@@ -109,14 +116,36 @@ extension ViewController: UICollectionViewDelegate {
         vc.cityLabel.text = cities[indexPath.row]
         vc.titleBar = cities[indexPath.row]
         for day in  0...6 {
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "yyyy'-'MM'-'dd"
-//            let date = dateFormatter.date(from: weather[indexPath.row].forecastWeek[day].date)
             vc.temp.append(weather[indexPath.row].forecastWeek[day].temp)
             vc.days.append(weather[indexPath.row].forecastWeek[day].date)
             
         }
         
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+
+extension ViewController {
+    func presentSearchAlertController(withTitle title: String?, message: String?, style: UIAlertController.Style, completionHandler: @escaping (String) -> Void) {
+        let ac = UIAlertController(title: title, message: message, preferredStyle: style)
+        ac.addTextField { tf in
+            let cities = ["Сан Франциско", "Москва", "Нью Йорк", "Стамбул", "Вена"]
+            tf.placeholder = cities.randomElement()
+        }
+        let search = UIAlertAction(title: "Search", style: .default) { action in
+            let textField = ac.textFields?.first
+            guard let cityName = textField?.text else { return }
+            if cityName != "" {
+                let city = cityName.split(separator:" ").joined(separator: "%20")
+   //             self.networkWeatherManager.fetchCurrentWeater(forCity: cityName)
+                completionHandler(city)
+            }
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        ac.addAction(search)
+        ac.addAction(cancel)
+        present(ac, animated: true, completion: nil)
     }
 }

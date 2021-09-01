@@ -36,21 +36,6 @@ class Details: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
-  
-    
-       
-//    func cityLayOut() {
-//        cityLabel.textColor = .white
-//        cityLabel.font = cityLabel.font.withSize(50)
-//        tempLabel.textColor = .white
-//        tempLabel.font = tempLabel.font.withSize(40)
-//        let stackView1 = UIStackView(arrangedSubviews: [cityLabel, tempLabel])
-//        view.addSubview(stackView1)
-//        stackView1.translatesAutoresizingMaskIntoConstraints = false
-//        stackView1.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-//        stackView1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-//        stackView1.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-//    }
 
 }
 
@@ -83,11 +68,17 @@ extension Details: UICollectionViewDataSource {
 }
     
 extension Details: UICollectionViewDelegateFlowLayout {
+  
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-         return   CGSize(width: view.bounds.width / 3 , height: 150)
+        let itemsPerRow: CGFloat = 2
+        let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        let paddingWidth = sectionInserts.left * (itemsPerRow + 1)
+        let availibleWidth = collectionView.frame.width - paddingWidth
+        let widthPerItem = availibleWidth/itemsPerRow
+        return CGSize(width: widthPerItem, height: widthPerItem)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 20, left: 3, bottom: 20, right: 3)
+        UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     }
 }
